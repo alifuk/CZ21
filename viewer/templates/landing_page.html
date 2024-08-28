@@ -3,4 +3,13 @@
 {% block content %}
 <h1>Hello</h1>
 
+<form action="/my_first_form" method="POST">
+    {% csrf_token %}
+    category_name:
+    <input name="category_name"></br>
+    <input type="submit">
+</form>
+
+category_name: {{category_name}}
+
 {% endblock %}
