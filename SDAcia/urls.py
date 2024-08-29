@@ -15,12 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from viewer.views import landing_page, form_example
+from viewer.views import landing_page, form_example, search, add_offer, offer
+from viewer.models import Brand, Comment, Offer, VehicleType
+
+admin.site.register(Brand)
+admin.site.register(Comment)
+admin.site.register(Offer)
+admin.site.register(VehicleType)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing_page),
+    path('search', search),
+    path('search/', search),
     path('my_first_form', form_example),
-    path('my_first_form/', form_example)
+    path('my_first_form/', form_example),
+    path('add_offer', add_offer),
+    path('add_offer/', add_offer),
+    path('offer/<pk_offer>', offer)
     
 ]
