@@ -50,3 +50,7 @@
 - filtrování objektů z DB, získání jednoho konkrétního objektu
 - odeslat formulář
 
+## Tipy
+- id/primární klíč konkrétního záznamu získám jako **car.pk**
+- nalezení tohoto záznamu pak mohu udělat jako **Car.objects.get(pk=car_pk)**
+ 
