@@ -53,4 +53,11 @@
 ## Tipy
 - id/primární klíč konkrétního záznamu získám jako **car.pk**
 - nalezení tohoto záznamu pak mohu udělat jako **Car.objects.get(pk=car_pk)**
+
+## Jak spustit
+git clone git@github.com:alifuk/CZ21.git
+cd CZ21/SDAcia
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
  
