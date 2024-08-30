@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from viewer.views import landing_page, form_example, search, add_offer, offer
+from viewer.views import landing_page, form_example, search, add_offer, offer, add_comment
 from viewer.models import Brand, Comment, Offer, VehicleType
 
 admin.site.register(Brand)
@@ -33,6 +33,9 @@ urlpatterns = [
     path('my_first_form/', form_example),
     path('add_offer', add_offer),
     path('add_offer/', add_offer),
-    path('offer/<pk_offer>', offer)
+    path('add_comment', add_comment),
+    path('add_comment/', add_comment),
+    path('offer/<pk_offer>', offer)  # http://127.0.0.1:8000/offer/6   <a href="/offer/{{offer.pk}}">Detail</a></p>
+    
     
 ]

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+<h2>{{ status }}</h2>
+
+<form action="/add_offer" method="POST">
+    {% csrf_token %}
+    Popisek: <input name="description"></br>
+    <select name="brand">      
+        <option value="">Vyber značku</option>  
+        {% for brand in all_brands %}
+        <option value="{{brand.pk}}">{{brand.name}}</option>        
+        {% endfor %}
+    </select>
+    <select name="type">      
+        <option value="">All types</option>  
+        {% for type in all_types %}
+        <option value="{{type.pk}}">{{type.name}}</option>        
+        {% endfor %}
+    </select>
+    <br>Cena:<input name="price" value="0"></br>
+    <br>Rok:<input name="year" value="0"></br>
+    <br>Power:<input name="power" value="0"></br>
+    <input type="submit">
+</form>
+
+{% endblock %}

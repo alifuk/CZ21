@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 {% block main_title %} {{ title }} {% endblock %}
 {% block content %}
-<h1>Hello</h1>
+<h1>{{ title }}</h1>
 
-<form action="/my_first_form" method="POST">
-    {% csrf_token %}
-    category_name:
-    <input name="category_name"></br>
-    <input type="submit">
-</form>
+<h2>Nejnovější inzeráty (TOP 5)</h2>
 
-category_name: {{category_name}}
+{% for offer in newest_offers %}
+<p>Datum přidání: {{ offer.offer_date }} Nabídka auta {{ offer.brand.name }}, výkon: {{offer.power}} cena: {{ offer.price }} 
+    <a href="/offer/{{offer.pk}}">Detail- {{offer.pk}}</a></p></p>
+{% endfor %}
+
+<h2>Nejpopulárnější inzeráty  (TOP 5)</h2>
+
+{% for offer in popular_offers %}
+<p>Počet zobrazení: {{ offer.view_count }}, výkon: {{offer.power}} cena: {{ offer.price }} <a href="/offer/{{offer.pk}}">Detail</a></p>
+{% endfor %}
+
+<h2>Nejnovější komentáře  (TOP 5)</h2>
+
+{% for comment in newest_comments %}
+<p>Nejnovější komentář: {{ comment.commented_date }} - {{ comment.text }}</p>
+{% endfor %}
 
 {% endblock %}

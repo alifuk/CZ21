@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<form action="/search" method="GET">
+    {% csrf_token %}
+    Popisek: <input name="search_description"></br>
+    <select name="search_brand">      
+        <option value="">All brands</option>  
+        {% for brand in all_brands %}
+        <option value="{{brand.pk}}">{{brand.name}}</option>        
+        {% endfor %}
+    </select>
+    <select name="search_type">      
+        <option value="">All types</option>  
+        {% for type in all_types %}
+        <option value="{{type.pk}}">{{type.name}}</option>        
+        {% endfor %}
+    </select>
+    <br>Cena od: <input name="search_price_from"></br>
+    <br>Cena do: <input name="search_price_to"></br>
+    <br>Rok od: <input name="search_year_from"></br>
+    <br>Rok do: <input name="search_year_to"></br>
+    <input type="submit">
+</form>
+
+<h2>Nalezené inzeráty</h2>
+<table>
+    <tr>
+        <th>Datum přidání</th>
+        <th>Značka</th>
+        <th>Typ</th>
+        <th>Výkon</th>
+        <th>Rok</th>
+        <th>Cena</th>
+        <th>Popis</th>
+    </tr>
+    {% for offer in offers %}
+    <tr style="margin-top: 10px; border-top: 2px black solid;">
+        <td>Datum přidání: {{ offer.offer_date }} <a href="/offer/{{offer.pk}}">Detail</a></p></td>
+        <td>{{ offer.brand.name }}</td>
+        <td>{{ offer.vehicle_type.name }}</td>
+        <td>{{offer.power}} kw</td>
+        <td>{{offer.year}}</td>
+        <td>{{ offer.price }} Kč</td>
+        <td>{{offer.description}}</td>        
+    </tr>
+    </span>
+    {% endfor %}
+</table>
+
+{% endblock %}
