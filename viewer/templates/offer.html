@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+počet zobrazení: {{offer.view_count}}
+
+<p><b>Popis:</b> {{ offer.description}}</p>
+<p><b>Power:</b>{{ offer.power}}</p>
+<p><b>Značka:</b>{{ offer.brand.name}}</p>
+<p><b>Typ vozu:</b>{{ offer.vehicle_type.name}}</p>
+<p><b>Rok výroby:</b>{{ offer.year}}</p>
+<p><b>Nabídnuto:</b>{{ offer.offer_date}}</p>
+
+<h3>Komentáře:</h3>
+{% if comments_count  == 0 %}
+<p>Nejsou zde komentáře, buďte první!!</p>
+{% endif %}
+
+{% for comment in comments %}
+<p>{{ comment.username}} - {{ comment.text}}</p>
+{% endfor %}
+
+<h4>Přidat komentář:</h4>
+<form action="/add_comment" method="POST">
+    {% csrf_token %}
+    <br> Uživatelské jméno: <input name="username"></br>
+    <br> Text: <input name="text" value="0"></br>
+    <input name="pk_offer" type="hidden" value="{{offer.pk}}"></br>
+    <input type="submit">
+</form>
+
+
+{% endblock %}
