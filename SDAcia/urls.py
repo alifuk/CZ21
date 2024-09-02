@@ -48,6 +48,7 @@ admin.site.register(Comment)
 admin.site.register(Offer)
 admin.site.register(VehicleType)
 
+from viewer.robert import RobertTemplateView, CarsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -62,7 +63,9 @@ urlpatterns = [
     path('add_offer/', add_offer),
     path('add_comment', add_comment),
     path('add_comment/', add_comment),
-    path('offer/<pk_offer>', offer, name='offer')  # http://127.0.0.1:8000/offer/6   <a href="/offer/{{offer.pk}}">Detail</a></p>
+    path('offer/<pk_offer>', offer, name='offer'),  # http://127.0.0.1:8000/offer/6   <a href="/offer/{{offer.pk}}">Detail</a></p>
+    path('robert', RobertTemplateView.as_view() ), 
+    path('cars_view', CarsView.as_view() ),
     
     
 ]
