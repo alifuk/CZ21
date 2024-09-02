@@ -31,31 +31,31 @@ def search(request):
 
     filtered_offers = Offer.objects.all()
 
-    filter_of_description = request.GET.get("search_description", "")
+    filter_of_description = request.POST.get("search_description", "")
     if filter_of_description != "":
         filtered_offers = filtered_offers.filter(description__contains=filter_of_description)
 
-    filter_of_brand = request.GET.get("search_brand", "")
+    filter_of_brand = request.POST.get("search_brand", "")
     if filter_of_brand != "":
         filtered_offers = filtered_offers.filter(brand__pk=filter_of_brand)
 
-    filter_of_price_from = request.GET.get("search_price_from", "")
+    filter_of_price_from = request.POST.get("search_price_from", "")
     if filter_of_price_from != "":
         filtered_offers = filtered_offers.filter(price__gt=filter_of_price_from)
 
-    filter_of_price_to = request.GET.get("search_price_to", "")
+    filter_of_price_to = request.POST.get("search_price_to", "")
     if filter_of_price_to != "":
         filtered_offers = filtered_offers.filter(price__lt=filter_of_price_to)
 
-    filter_of_type= request.GET.get("search_type", "")
+    filter_of_type= request.POST.get("search_type", "")
     if filter_of_type != "":
         filtered_offers = filtered_offers.filter(vehicle_type__pk=filter_of_type)
 
-    filter_of_year_from = request.GET.get("search_year_from", "")
+    filter_of_year_from = request.POST.get("search_year_from", "")
     if filter_of_year_from != "":
         filtered_offers = filtered_offers.filter(year__gt=filter_of_year_from)
 
-    filter_of_year_to = request.GET.get("search_year_to", "")
+    filter_of_year_to = request.POST.get("search_year_to", "")
     if filter_of_year_to != "":
         filtered_offers = filtered_offers.filter(year__lt=filter_of_year_to)
 
