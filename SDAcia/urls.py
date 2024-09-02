@@ -49,6 +49,7 @@ admin.site.register(Offer)
 admin.site.register(VehicleType)
 
 from viewer.robert import RobertTemplateView, CarsView
+from viewer.example_form import BrandView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -66,6 +67,8 @@ urlpatterns = [
     path('offer/<pk_offer>', offer, name='offer'),  # http://127.0.0.1:8000/offer/6   <a href="/offer/{{offer.pk}}">Detail</a></p>
     path('robert', RobertTemplateView.as_view() ), 
     path('cars_view', CarsView.as_view() ),
+    path('brand_form', BrandView.as_view() ),
+    path('brand_create', BrandView.as_view()),
     
     
 ]
